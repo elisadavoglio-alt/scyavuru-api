@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: scyavuru-buyer-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn demo_fastapi_scyavuru:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APIFY_TOKEN
+        sync: false # Lo imposteremo a mano nel pannello di Render per sicurezza

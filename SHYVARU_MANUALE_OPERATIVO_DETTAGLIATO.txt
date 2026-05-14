@@ -1,0 +1,64 @@
+===========================================================================
+SHYVARU: MANUALE OPERATIVO DI CONTROLLO E ANALISI PROFONDA (VERSIONE 2.0)
+Documento di supporto per Elisa Davoglio (Prep Call Giovedì)
+===========================================================================
+
+---------------------------------------------------------------------------
+1. ANALISI DETTAGLIATA DEL FILE CSV (PROVE SCHIACCIANTI)
+---------------------------------------------------------------------------
+Ho analizzato i dati grezzi del file CSV estratto da Ferdinando. Ecco gli esempi reali che dimostrano perché il dataset è "sporco" e pericoloso per l'immagine del CEO:
+
+ESEMPI DI PROFILI DA SCARTARE (Presenti nel file):
+* RIGA 27: Kingfluencers - Business Development (Agenzia Social Media).
+  -> Perché scartare: Sono consulenti di marketing a Zurigo. Non comprano pistacchio, vogliono venderci servizi.
+* RIGA 28/29: EY (Ernst & Young) - Business Consulting Manager.
+  -> Perché scartare: Sono consulenti aziendali mondiali. Totalmente fuori target.
+* RIGA 10-20: Molti profili "Planning" e "Digital Logistics" in aziende di servizi professionali.
+
+CONCLUSIONE: Il file è un elenco di aziende che cercano personale qualificato (Manager) in settori generici. Ferdinando ha usato un "Job Scraper" su LinkedIn, che pesca chiunque stia cercando di assumere un manager, indipendentemente dal settore Food.
+
+---------------------------------------------------------------------------
+2. I POCHI PROFILI DA SALVARE (Se vogliamo usarli come test)
+---------------------------------------------------------------------------
+Nel mare di 3000 nomi, gli unici profili che hanno un senso sono quelli che contengono la parola "Retail" o "Supply Chain" in aziende alimentari (se presenti). Ma attenzione: contattarli senza Sales Navigator significa farlo "al buio".
+
+---------------------------------------------------------------------------
+3. COME FARE LO SCRAPING CORRETTO (SENZA SALES NAVIGATOR?)
+---------------------------------------------------------------------------
+Se Ferdinando NON vuole usare Sales Navigator, deve fare un lavoro manuale di precisione, altrimenti continuerà a tirare fuori spazzatura.
+
+LA TECNICA ALTERNATIVA (Manuale/Artigianale):
+1. Ricerca su Google con stringa DORK: 
+   site:linkedin.com/in "Buyer GDO" OR "Category Manager Food" Scyavuru
+2. Usare estensioni come "Apollo.io" o "Hunter.io" per estrarre le email direttamente dai profili trovati su Google.
+3. Questo metodo produce 20 nomi al giorno, ma sono 20 nomi d'oro.
+
+---------------------------------------------------------------------------
+4. ROADMAP AGGIORNATA E COLLEGAMENTO AI TREND AI
+---------------------------------------------------------------------------
+
+FASE 1: IL "LAVAGGIO DEI DATI" (Subito dopo la call)
+* Ferdinando deve ammettere che il CSV è sporco.
+* Deve rigenerare una lista di sole 50 aziende TARGET (es: Carrefour, Coop, Lidl, Nestlé).
+* Dai Trend AI che ha trovato lui (Creme Proteiche, Clean Label), dobbiamo identificare chi è il Buyer specifico per quelle categorie.
+
+FASE 2: IL CEO DIVENTA "AUTHORITY" (Contemporaneamente)
+* Sulla base dei Trend AI, il CEO deve pubblicare 2 post a settimana.
+* Esempio: "Il mercato chiede Clean Label (Trend #1). Ecco come Scyavuru controlla la filiera dal guscio al vasetto per garantirlo."
+* Questo serve a "scaldare" i buyer prima che ricevano il nostro messaggio.
+
+FASE 3: OUTREACH MIRATO (Settimana 2)
+* Messaggio d'attacco: "Ho visto la vostra attenzione verso i trend della Smart Agriculture (Trend #4). Scyavuru ha una proposta di co-packing che..."
+
+---------------------------------------------------------------------------
+5. DOMANDE PRATICHE/TECNICHE PER FERDINANDO
+---------------------------------------------------------------------------
+
+1. "Ferdinando, nel CSV ci sono consulenti di EY e agenzie social media. Come pensi che questi profili possano generare ordini di pistacchio?"
+2. "Senza Sales Navigator, come pensi di filtrare i Buyer dai dipendenti generici delle aziende?"
+3. "La tua tabella dei trend è ottima: la useremo per i contenuti. Ma per i contatti, possiamo fare uno sforzo di qualità anziché di quantità?"
+
+---------------------------------------------------------------------------
+RIASSUNTO PER ELISA:
+Ferdinando ha fatto un'analisi di mercato (i trend), ma ha sbagliato lo strumento di vendita (il database). Tu devi convincerlo a usare la sua ottima analisi sui trend per colpire i nomi giusti, non i 3000 del CSV.
+===========================================================================

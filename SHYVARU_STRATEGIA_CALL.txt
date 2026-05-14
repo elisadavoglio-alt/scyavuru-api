@@ -1,0 +1,46 @@
+# SHYVARU: ANALISI STRATEGICA E PIANO D'AZIONE (CALL GIOVEDI 14/05)
+A cura di: Elisa Davoglio
+
+-------------------------------------------------------------------------
+1. ANALISI CRITICA: COSA ABBIAMO OGGI?
+-------------------------------------------------------------------------
+Ferdinando ha prodotto una visione strategica eccellente, ma i dati estratti (CSV) sono in disaccordo con questa visione.
+
+* IL LAVORO DI FERDINANDO (Cosa salvare): L'analisi dei trend (Top 10) e il posizionamento sulla "Integrità di Filiera" sono perfetti. Servono per il marketing e per far sembrare il CEO un leader di settore.
+
+* L'ERRORE TECNICO (Cosa correggere): Il file CSV da 3000 contatti è stato estratto tramite un "Job Scraper". Questo significa che abbiamo i nomi di chi lavora in aziende che CERCANO personale, non di chi COMPRA il prodotto.
+- Esempio: Se una fabbrica di motori cerca un ingegnere, lo scraper la prende. Ma a noi non serve l'ingegnere, ci serve il Buyer della GDO.
+
+* CONCLUSIONE: Il database attuale ha un tasso di errore del 75%. Usarlo per l'outreach sarebbe un danno d'immagine.
+
+-------------------------------------------------------------------------
+2. TABELLA DI CONFRONTO: DATI SBAGLIATI VS. DATI GIUSTI
+-------------------------------------------------------------------------
+CARATTERISTICA       | DATI ATTUALI (Sbagliati)  | TARGET STRATEGICO (Giusti)
+-------------------------------------------------------------------------
+Metodo estrazione    | Job Scraper               | People/Company Scraper
+Ruoli prevalenti     | Ingegneri, Operai, HR     | Buyer GDO, Category Manager
+Settore Aziendale    | Meccanica, Packaging      | Food, Retail, HoReCa
+Potere d'acquisto    | Zero                      | Altissimo
+Rischio Immagine     | Alto (Spam)               | Nullo (Targetizzato)
+
+-------------------------------------------------------------------------
+3. COSA DIRE A FERDINANDO (PUNTI CHIAVE CALL)
+-------------------------------------------------------------------------
+A. "Ferdinando, la strategia è da 10 e lode. Ma il CSV è 'sporco' perché basato su Jobs. Dobbiamo resettare lo scraping per non bruciare il profilo del CEO."
+
+B. PROPOSTA: Cambiamo rotta. Cerchiamo esclusivamente "Category Manager" e "Buyer Breakfast/Sweets".
+
+C. IL GANCIO: Usiamo i tuoi trend Top 10 per scrivere i messaggi. Es: "Visto il trend delle creme proteiche, Scyavuru ha una soluzione di filiera..."
+
+-------------------------------------------------------------------------
+4. PROSSIMI PASSI (ROADMAP 7 GIORNI)
+-------------------------------------------------------------------------
+1. RESET SCRAPING (Ferdinando): Nuovo file CSV pulito (anche solo 100 nomi).
+2. OTTIMIZZAZIONE PROFILO CEO (Elisa): Restyling come "Esperto di Filiera".
+3. TEST OUTREACH: Campagna pilota su 20 contatti scelti a mano.
+
+-------------------------------------------------------------------------
+CONCLUSIONE PER LA CALL:
+"Ferdinando, abbiamo la macchina (strategia) e la benzina (trend). Ora ci serve il bisturi (dati giusti). Sistemiamo lo scraping e siamo pronti per lo scale-up."
+-------------------------------------------------------------------------

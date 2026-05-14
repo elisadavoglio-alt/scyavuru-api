@@ -1,0 +1,210 @@
+══════════════════════════════════════════════════════════════════
+SIMULAZIONE CALL GIOVEDÌ — SHYAVURU STRATEGY REVIEW
+Analisi Dataset CSV + Feedback sul Profilo CEO + Roadmap Operativa
+Senior PM: Elisa Davoglio | Cliente: Ferdinando Vella
+══════════════════════════════════════════════════════════════════
+
+PREMESSA: COSA HO TROVATO NEL CSV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ho analizzato il file "dataset_linkedin-jobs-scraper_2026-05-06.csv".
+Il dataset contiene 3.278 righe di job posting scaricate da LinkedIn.
+
+PROBLEMA CRITICO RILEVATO:
+Le offerte presenti non sono focalizzate sul settore Food/GDO/Buyer.
+I profili trovati appartengono prevalentemente a:
+- B2B SaaS e IT Consulting (Svizzera, Germania)
+- Luxury Fashion (Zegna, PKZ)
+- Finance e Banking (UBP, Viseca)
+- Automazione Industriale (Baumer Group)
+- Revenue Management (HoReCa, Restaurant)
+
+CAUSA PROBABILE:
+Il filtro di scraping era impostato su keyword generiche come "Business Director"
+o "Senior Manager" senza restrizioni di settore Food/GDO/Grocery.
+
+IMPLICAZIONE STRATEGICA:
+Prima di estrarre keyword utili per Shyavuru, dobbiamo fare un secondo
+scraping con filtri specifici per il nostro target buyer.
+Questo è il punto di apertura della call di giovedì.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOCCO 1 — APERTURA: CHECK DEL DATASET (10 minuti)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COME APRE ELISA (SCRIPT):
+"Ferdinando, innanzitutto complimenti: il metodo di scraping che hai costruito
+funziona perfettamente. La struttura del CSV è pulita, i dati sono completi,
+lo strumento è potente. Questo è un asset che ci servirà per tutto il progetto.
+
+Però, analizzando il file in dettaglio, ho rilevato una cosa importante su cui
+voglio confrontarmi con te prima di procedere all'estrazione delle keyword.
+
+Il dataset contiene offerte molto eterogenee per settore: vedo IT Consulting in
+Svizzera, profili nel Luxury Fashion, ruoli finanziari e bancari. Non trovo
+ancora offerte specifiche per Category Manager nel Food/GDO o Buyer nel
+settore Breakfast & Sweets. Questo è il nostro target reale.
+
+Volevo capire: quali keyword e filtri hai usato per lo scraping?"
+
+DOMANDE DA FARE A FERDINANDO:
+1. "Quali keyword principali hai usato nel campo di ricerca LinkedIn?"
+2. "Hai filtrato per settore (Industry: Food & Beverages / Retail / GDO)?"
+3. "Hai limitato la seniority a 'Mid-Senior' o 'Director'?"
+4. "Esiste già un secondo dataset più mirato, o dobbiamo impostare un nuovo run?"
+
+COME GESTIRE LE SUE RISPOSTE:
+
+SCENARIO A — Ha usato keyword generiche:
+"Perfetto, il test del metodo è riuscito. Ora facciamo il secondo passo:
+rifacciamo lo scraping con filtri specifici. Le keyword che propongo sono:
+'Category Manager Food', 'Buyer Grocery', 'Responsabile Acquisti GDO',
+'Head of Purchasing Food & Beverage', 'Buyer Breakfast Snacks'.
+Settore: Food Production + Retail + Wholesale.
+Paese: Italia (priorità), poi Germania e Francia per il futuro.
+Puoi avere il nuovo CSV entro mercoledì?"
+
+SCENARIO B — Ha già un secondo dataset:
+"Ottimo! Mandamelo subito dopo la call così lo integro nell'analisi
+che sto preparando per il brief di Davide."
+
+SCENARIO C — È convinto che il dataset vada bene:
+"Capisco il ragionamento, Ferdinando, ma ti mostro un esempio concreto:
+guarda questa offerta di Adesso Schweiz (IT Consulting) e questa di
+Revenue Management Solutions (HoReCa). I 'dolori' di questi manager
+sono completamente diversi da quelli di un Buyer del Gruppo Vegé o
+di un Category Manager di Esselunga. Se usiamo queste keyword per i
+testi di Shyavuru, rischiamo di parlare la lingua sbagliata al buyer
+sbagliato. Ha senso fare il refine del dataset prima di procedere?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOCCO 2 — VALUTAZIONE DEL PROFILO CEO (15 minuti)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COME INTRODUCE ELISA:
+"Nel frattempo, vediamo insieme il Profilo CEO. Hai detto che sei quasi pronto —
+condividimi lo schermo o mandami il documento aggiornato così facciamo
+una review live. Ho preparato una checklist."
+
+CHECKLIST DI VALUTAZIONE (DA SPUNTARE LIVE):
+
+1. L'HEADER (Il titolo sotto il nome)
+   Domanda: "Risponde alla domanda 'Cosa risolve Shyavuru per il Buyer'?"
+   Obiettivo: Non deve dire solo "CEO | Fondatore" ma deve contenere
+   una promessa commerciale. Es:
+   "CEO Shyavuru | Pistacchio Siciliano Premium per la GDO e l'Industria Alimentare
+   | Filiera Garantita | Forniture B2B Continue"
+
+2. LA SEZIONE ABOUT (I primi 3 righi sono cruciali)
+   Domanda: "Il buyer capisce in 5 secondi perché scegliere Shyavuru?"
+   Deve contenere:
+   - Il territorio di origine (Sicilia = garanzia di autenticità)
+   - La promessa di continuità (Continuous Supply = killer feature)
+   - Il posizionamento Premium vs commodity (differenziazione)
+
+3. LE 3 KEY SKILLS / PROMISE
+   Domanda: "Sono legate ai 'dolori' reali del buyer che abbiamo identificato?"
+   Le 3 promise ideali per Shyavuru sono:
+   - "Premium Quality Sourcing" (Il buyer vuole distinguersi)
+   - "Reliable B2B Supply Chain" (Il buyer ha paura delle rotture di stock)
+   - "Gourmet Innovation Partner" (Il buyer cerca novità per il suo assortimento)
+
+4. SOCIAL REFERENCING / CASI CONCRETI
+   Domanda: "Ci sono prove sociali? Referenze, partnership, numeri?"
+   Ideale: Anche solo "Fornitore di X aziende del settore dolciario" o
+   "Certificazione X" o "Premiato a Y fiera di settore".
+
+5. CALL TO ACTION
+   Domanda: "Cosa deve fare il buyer dopo aver visto il profilo?"
+   Deve esserci un invito esplicito:
+   "Scrivimi per ricevere il nostro catalogo B2B" oppure
+   "Contattami per discutere le tue esigenze di fornitura"
+
+FEEDBACK DA DARE (CON DIPLOMAZIA):
+"Ferdinando, il lavoro di base è solido e si vede l'impegno.
+Il punto su cui dobbiamo ancora lavorare è quello che chiamo il
+'Test del Buyer in 3 secondi': un Category Manager apre il profilo
+LinkedIn del CEO di Shyavuru, ha 3 secondi di attenzione e deve
+capire immediatamente una cosa sola: perché Shyavuru è diverso da
+tutti gli altri fornitori di frutta secca sul mercato.
+Questo è il 'Cristallo' che dobbiamo far emergere dalla marmellata
+dei profili generici. Lavoriamo insieme su questo?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOCCO 3 — ROADMAP E NEXT STEPS (15 minuti)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ELISA PRESENTA LA ROADMAP AGGIORNATA:
+
+FASE 1 — DATI E IDENTITÀ (Questa settimana)
+- Ferdinando: Nuovo scraping mirato (keyword specifiche food/GDO) → entro mercoledì
+- Ferdinando: Finalizzazione Profilo CEO con feedback di questa call → entro giovedì
+- Elisa: Analisi del nuovo CSV e mapping "dolori buyer" → venerdì
+
+FASE 2 — ARCHITETTURA DIGITALE (Settimana prossima)
+- Elisa: Brief formale per Davide (struttura sito basata su keyword)
+- Davide: Proposta struttura Home Page e pagine chiave
+- Elisa + Davide: Copywriting semantico delle sezioni chiave
+
+FASE 3 — OUTREACH (Fine maggio)
+- Elisa: Prima bozza di 3 modelli InMail per tipologie buyer diverse:
+  (GDO Grande / Industria Dolciaria / Retailer Gourmet)
+- Ferdinando: Lancio outreach pilota su 10 contatti selezionati
+- Review risultati: tasso di risposta e quality dei lead
+
+DOMANDA DI SBLOCCO SU DAVIDE:
+"Ferdinando, una cosa importante: Davide ha ancora bisogno di materiali
+da noi per procedere, o è bloccato per altri motivi?
+Ho bisogno di capire se devo preparargli un brief formale con le keyword
+e la struttura delle pagine, o se sta aspettando qualcos'altro.
+Puoi fare un check con lui prima della fine di questa settimana?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BLOCCO 4 — CHIUSURA E SCALABILITÀ (5 minuti)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COME CHIUDE ELISA:
+"Ferdinando, il metodo che hai costruito per lo scraping è un asset
+strategico fondamentale per il progetto, e non solo per Shyavuru.
+
+Una volta che affiniamo i filtri sul settore food, questo stesso
+approccio può essere replicato per:
+- Mappare i buyer in Germania o Francia (espansione europea)
+- Analizzare altri prodotti premium della linea
+- Monitorare i trend di mercato ogni 3 mesi in modo automatico
+
+Questo è esattamente il tipo di vantaggio competitivo che un brand come
+Shyavuru può sfruttare per essere sempre un passo avanti rispetto
+ai concorrenti che ancora operano 'a intuizione'.
+
+Proposta: fissiamo questa call come appuntamento fisso ogni due settimane.
+Giovedì prossimo o il lunedì successivo?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTE STRATEGICHE PER ELISA — TONO E POSIZIONAMENTO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IL TUO RUOLO NELLA CALL:
+Non sei solo la "consulente LinkedIn". Sei la Senior PM che governa la roadmap
+intera e garantisce che ogni pezzo di lavoro sia connesso agli obiettivi
+commerciali reali. La tua autorevolezza viene dai dati, non dalle opinioni.
+
+IL TUO DIFFERENZIATORE IN QUESTA CALL:
+Hai letto e analizzato il CSV prima della call. Ferdinando probabilmente non
+lo ha fatto con questo livello di dettaglio. Questo dimostra che il tuo valore
+è analitico prima ancora che strategico. Usalo con rispetto, non come critica.
+
+LA STRUTTURA DEL FEEDBACK (SEMPRE QUESTA):
+1. "Hai fatto bene [X]: questo è il valore che porti."
+2. "Il punto su cui lavorare insieme è [Y]."
+3. "Ecco come lo risolviamo: [Z con scadenza precisa]."
+
+LA FRASE DI APERTURA (DA MANDARE A MEMORIA):
+"Ferdinando, ho analizzato il CSV. Il metodo funziona perfettamente.
+Però il dataset non è ancora centrato sui nostri buyer target.
+Prima di procedere, dobbiamo affinare i filtri — possiamo pianificarlo subito?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Documento preparato da Elisa Davoglio | Senior Digital PM
+Basato su analisi reale del file CSV ricevuto da Ferdinando Vella
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+apify-client
+python-dotenv
+pandas
+openpyxl
