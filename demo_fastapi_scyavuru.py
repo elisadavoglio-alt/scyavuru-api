@@ -153,72 +153,77 @@ def parse_linkedin_title(title: str):
 
 
 # -------------------------------------------------------
-# UTILITY: Motore di ricerca principale (Apollo.io B2B)
+# UTILITY: Motore di ricerca principale (Apify Harvest)
 # -------------------------------------------------------
-def run_search(ruolo: str, azienda: str, location: str, max_profili: int, cerca_email: bool = False, apollo_api_key: str = None):
-    # Se non c'è la chiave Apollo, proviamo un fallback mock per dimostrare il concetto 
-    # o potremmo ritornare errore. Lasciamo un try/except.
-    if not apollo_api_key:
-        raise ValueError("Apollo API Key mancante. Inserisci la tua chiave gratuita per accedere al database B2B.")
-
-    url = "https://api.apollo.io/v1/mixed_people/search"
-    
-    payload = {
-        "api_key": apollo_api_key,
-        "q_keywords": ruolo,
-        "person_locations": [location],
-        "per_page": min(max_profili, 100)
-    }
-    
+def run_search(ruolo: str, azienda: str, location: str, max_profili: int, cerca_email: bool = False, apify_api_key: str = None):
+    token = apify_api_key or APIFY_TOKEN
+    if not token:
+        raise ValueError("APIFY API Token mancante. Inseriscilo per accedere ai dati di LinkedIn tramite Harvest.")
+        
+    client = ApifyClient(token)
+    google_query = f'site:linkedin.com/in "{ruolo}" "{location}"'
     if azienda:
-        domain = get_domain_from_company(azienda)
-        if domain:
-            payload["q_organization_domains"] = domain
+        google_query = f'site:linkedin.com/in "{ruolo}" "{azienda}" "{location}"'
 
-    headers = {
-        "Cache-Control": "no-cache",
-        "Content-Type": "application/json"
+    run_input_google = {
+        "queries": google_query,
+        "resultsPerPage": max_profili + 5,
+        "maxPagesPerQuery": 1,
+        "saveHtml": False,
+        "saveHtmlToKeyValueStore": False,
     }
-
+    
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=15)
-        response.raise_for_status()
-        data = response.json()
+        run_g = client.actor("apify/google-search-scraper").call(run_input=run_input_google)
+        items_g = list(client.dataset(run_g["defaultDatasetId"]).iterate_items())
+        
+        urls = []
+        for page in items_g:
+            for item in page.get("organicResults", []):
+                url = item.get("url", "")
+                if "linkedin.com/in/" in url and url not in urls:
+                    urls.append(url)
+                    
+        if not urls:
+            return google_query, []
+
+        run_input_harvest = {
+            "profileScraperMode": "Profile details no email ($4 per 1k)",
+            "queries": urls[:max_profili]
+        }
+        
+        run_h = client.actor("harvestapi/linkedin-profile-scraper").call(run_input=run_input_harvest)
+        items_h = list(client.dataset(run_h["defaultDatasetId"]).iterate_items())
+        
+        results = []
+        for p in items_h:
+            nome = p.get('firstName', '') + ' ' + p.get('lastName', '')
+            qualifica = p.get('headline', 'N/D')
+            co_name = p.get('company', 'Da verificare')
+            email = p.get('email', 'N/A')
+            link = p.get('url', '')
+            
+            # Hunter enrichment se richiesto
+            email_score = 0
+            if (not email or email == 'N/A') and cerca_email:
+                email_h, score_h = get_email_from_hunter(nome, co_name)
+                if score_h > 0 or email_h != "Non trovata":
+                    email = email_h
+                    email_score = score_h
+                
+            results.append({
+                "Nome": nome.strip(),
+                "Qualifica": qualifica,
+                "Azienda": co_name,
+                "Email": email,
+                "Email Score": email_score if cerca_email else "",
+                "LinkedIn": link,
+                "Anteprima": "Estratto con Apify Harvest Scraper"
+            })
+            
+        return google_query, results
     except Exception as e:
-        raise Exception(f"Errore connessione Apollo.io: {str(e)}")
-
-    people = data.get("people", [])
-    results = []
-
-    for person in people[:max_profili]:
-        nome = f"{person.get('first_name', '')} {person.get('last_name', '')}".strip()
-        qualifica = person.get("title", "N/D")
-        
-        org = person.get("organization", {})
-        co_name = org.get("name", "Da verificare") if org else "Da verificare"
-        
-        linkedin_url = person.get("linkedin_url", "")
-        
-        # Apollo fornisce spesso già la mail
-        email = person.get("email", "Non trovata")
-        email_score = 100 if email != "Non trovata" else 0
-        
-        # Se Apollo non ha la mail, e l'utente ha chiesto di usare Hunter
-        if (not email or email == "Non trovata") and cerca_email:
-            email, email_score = get_email_from_hunter(nome, co_name)
-
-        results.append({
-            "Nome": nome,
-            "Qualifica": qualifica,
-            "Azienda": co_name,
-            "Email": email,
-            "Email Score": email_score if (cerca_email or email != "Non trovata") else "",
-            "LinkedIn": linkedin_url,
-            "Anteprima": f"Estratto istantaneamente da Apollo.io B2B Database"
-        })
-
-    query_usata = f"Apollo.io Search: {ruolo} in {location}"
-    return query_usata, results
+        raise Exception(f"Errore Apify Harvest: {str(e)}")
 
 
 # -------------------------------------------------------
@@ -231,14 +236,14 @@ def search_buyers(
     location: str = Query("Italy", description="Es: Italy, Germany, Switzerland"),
     max_profili: int = Query(5, ge=1, le=50, description="Numero di profili da estrarre (max 50)"),
     cerca_email: bool = Query(False, description="Attiva ricerca email via Hunter.io (usa crediti)"),
-    apollo_api_key: str = Query(None, description="La tua chiave gratuita Apollo.io per sbloccare l'intero database LinkedIn")
+    apify_api_key: str = Query(None, description="La tua API Token di Apify (es. apify_api_...) per usare Harvest")
 ):
     """
-    Estrae profili LinkedIn reali. Restituisce JSON.
+    Estrae profili LinkedIn reali tramite Harvest. Restituisce JSON.
     Per scaricare direttamente un file Excel usa /export
     """
     try:
-        google_query, results = run_search(ruolo, azienda, location, max_profili, cerca_email, apollo_api_key)
+        google_query, results = run_search(ruolo, azienda, location, max_profili, cerca_email, apify_api_key)
         return {
             "query_eseguita": google_query,
             "totale_trovati": len(results),
@@ -258,14 +263,14 @@ def export_excel(
     location: str = Query("Italy", description="Es: Italy, Germany, Switzerland"),
     max_profili: int = Query(10, ge=1, le=50, description="Numero di profili da estrarre (max 50)"),
     cerca_email: bool = Query(False, description="Attiva ricerca email via Hunter.io (usa crediti)"),
-    apollo_api_key: str = Query(None, description="La tua chiave gratuita Apollo.io per sbloccare l'intero database LinkedIn")
+    apify_api_key: str = Query(None, description="La tua API Token di Apify (es. apify_api_...) per usare Harvest")
 ):
     """
     Estrae profili LinkedIn e scarica direttamente un file Excel (.xlsx).
     Attiva cerca_email=true per aggiungere le email tramite Hunter.io.
     """
     try:
-        google_query, results = run_search(ruolo, azienda, location, max_profili, cerca_email, apollo_api_key)
+        google_query, results = run_search(ruolo, azienda, location, max_profili, cerca_email, apify_api_key)
 
         df = pd.DataFrame(results)
 
